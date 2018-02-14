@@ -2,6 +2,14 @@ package com.ib.linklist;
 
 public class ReverseLinkedList {
 
+	 private int listLenth(ListNode a) {
+		int l = 0;		
+		while(a != null) {
+			l++;
+			a = a.next;
+		}
+		return l;
+	}
 	public ListNode reverseList(ListNode A) {
 		ListNode it = A;
 		ListNode prev = null;
@@ -18,20 +26,26 @@ public class ReverseLinkedList {
 		}
 		return A;
 	}
-
-	public static void main(String[] args) {
-		ListNode a1 = new ListNode(1);
-		ListNode a2 = new ListNode(2);
-		ListNode c1 = new ListNode(7);
-		ListNode c2 = new ListNode(8);
-		ListNode c3 = new ListNode(9);
-		a1.next = a2;
-		a2.next = c1;
-		c1.next = c2;
-		c2.next = c3;
-		//ListNode.print(a1);
-		 ReverseLinkedList rr = new ReverseLinkedList();
-		 ListNode.print( rr.reverseList(a1));
-
-	}
+	public int lPalin(ListNode A) {
+	int l = listLenth(A);
+	if(l < 2) return 1;
+		
+		int h = l % 2 == 0 ? l /2 :( l /2 ) + 1;
+	
+		ListNode n1 = A;
+		for(int i = 0 ; i < h ; i++) {
+			n1 = n1.next;
+		}
+		
+		
+		n1 = reverseList(n1);
+		
+		while (n1 != null ) {
+			if(A.val != n1.val) return 0;
+			A = A.next;
+			n1 = n1.next;
+			
+		}
+		return 1;
+    }
 }
