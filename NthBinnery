@@ -1,0 +1,26 @@
+private static BigInteger getNthBinner(BigInteger n) {				
+		 if (n.compareTo(BigInteger.ZERO) <= 0) {
+		        throw new IndexOutOfBoundsException("You need to supply N >= 1");
+		    } else if (n.equals(BigInteger.valueOf(1))) {
+		        return BigInteger.valueOf(0);
+		    } else if (n.equals(BigInteger.valueOf(2))) {
+		        return BigInteger.valueOf(1);
+		    } else if (n.equals(BigInteger.valueOf(3))) {
+		        return BigInteger.valueOf(3);
+		    }
+		 
+		 String nBinnery = n.toString(2);
+		 StringBuilder b = new StringBuilder(nBinnery.length());
+		 b.append(nBinnery);
+		 char c  = b.charAt(1);		 
+		 b.deleteCharAt(1);	
+		 
+		 nBinnery = b.toString();		
+		 if(c == '0') {
+			 b.deleteCharAt(b.length() - 1);
+		 } 
+		 b.reverse();
+		
+		 return new BigInteger(nBinnery + b.toString(), 2);
+		 
+	}
